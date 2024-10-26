@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Row</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+  <h1>Edit Row</h1>
+  <form action="/update/<%= row.get("_id_") %>" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="text" name="_id_" value="<%= row.get("_id_") %>">
+    <label for="FirstName">FirstName:</label>
+    <input type="text" id="FirstName" name="FirstName" value="<%= row.get("FirstName") %>" required><br><br>
+
+    <label for="LastName">LastName:</label>
+    <input type="text" id="LastName" name="LastName" value="<%= row.get("LastName") %>" required><br><br>
+
+    <label for="Email">Email:</label>
+    <input type="text" id="Email" name="Email" value="<%= row.get("Email") %>" required><br><br>
+
+    <button type="submit">Update</button>
+  </form>
+  <script src="js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

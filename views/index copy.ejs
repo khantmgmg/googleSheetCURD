@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Sheets Data</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+  <h1>Data from Google Sheet</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <% console.log(data)%>
+        <% headerValues = rows[0].get("_worksheet").get("_headerValues");%>
+        <% headerValues.forEach(headerValue => { %>
+            <th><%= headerValue %></th>
+        <% })%>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rows.forEach(row => { %>
+        <tr>
+          <td><%= row.get("FirstName") %></td>
+          <td><%= row.get("LastName") %></td>
+          <td><%= row.get("Email") %></td>
+          <td>
+            <a href="/edit/<%= row.id %>">Edit</a>
+            <form action="/delete/<%= row.id %>" method="POST" style="display: inline;">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <a href="/create">Create New Row</a>
+  <script src="js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

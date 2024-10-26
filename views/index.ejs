@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Sheets Data</title>
+    <link
+      href="css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>Data from Google Sheet</h1>
+    <table>
+      <thead>
+        <tr>
+          <% for (let columnName of columnNames) { %>
+          <th><%= columnName %></th>
+          <% } %>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let row of rows) { %>
+        <tr>
+          <% for (let columnName of columnNames) { %>
+          <td><%= row.get(columnName) %></td>
+          <% } %>
+          <td>
+            <a href="/edit/<%= row.get("_id_") %>">Edit</a>
+            <form
+              action="/delete/<%= row.get("_id_") %>"
+              method="POST"
+              style="display: inline"
+            >
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <a href="/create">Create New Row</a>
+    <script
+      src="js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
